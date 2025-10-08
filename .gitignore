@@ -1,0 +1,35 @@
+
+---
+
+##  `.gitignore` (for Django + Python)
+
+```gitignore
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+venv/
+env/
+*.env
+*.sqlite3
+
+# Django
+*.log
+*.pot
+*.pyc
+*.mo
+*.sqlite3
+staticfiles/
+media/
+db.sqlite3
+
+# VS Code / IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db

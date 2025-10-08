@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>URL Shortener</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="container mt-5">
+    <h1 class="mb-4">URL Shortener</h1>
+
+    <!-- Form -->
+    <form method="post" class="mb-4">
+        {% csrf_token %}
+        {{ form.original_url }}
+        <button type="submit" class="btn btn-primary mt-2">Shorten URL</button>
+    </form>
+
+    <!-- Shortened URL -->
+    {% if short_url %}
+    <div class="alert alert-success">
+        <strong>✅ Your shortened URL:</strong>
+        <div class="input-group mb-2">
+            <input type="text" value="{{ short_url }}" id="shortLink" class="form-control" readonly>
+            <button class="btn btn-outline-secondary" type="button" onclick="copyLink()">Copy</button>
+        </div>
+        <a href="{{ short_url }}" target="_blank">Open shortened link</a>
+    </div>
+    {% endif %}
+
+    <!-- User Links List -->
+    {% if links %}
+    <h3>My Shortened Links:</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Code</th>
+                <th>Original URL</th>
+                <th>Short Link</th>
+                <th>Visits</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for link in links %}
+            <tr>
+                <td>{{ link.code }}</td>
+                <td>{{ link.original_url }}</td>
+                <td><a href="{{ link.short_link }}" target="_blank">{{ link.short_link }}</a></td>
+                <td>{{ link.visits }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+
+<script>
+function copyLink() {
+    const copyText = document.getElementById("shortLink");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+    alert("Copied: " + copyText.value);
+}
+</script>
+</body>
+</html>
