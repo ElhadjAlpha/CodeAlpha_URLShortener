@@ -15,3 +15,15 @@ This is a Django-based URL Shortener project. It allows users to shorten long UR
    ```bash
    git clone git@github.com:ElhadjAlpha/CodeAlpha_URLShortener.git
    cd CodeAlpha_URLShortener
+## Create a virtual environment
+- python -m venv venv
+- venv\Scripts\activate     # Windows
+- source venv/bin/activate  # macOS/Linux
+# Install dependencies
+- pip install -r requirements.txt
+# Copy the example settings file and add your secret key
+- copy codealpha_shortener\settings_example.py codealpha_shortener\settings.py   # Windows
+- cp codealpha_shortener/settings_example.py codealpha_shortener/settings.py      # macOS/Linux
+# Apply migrations and run the server
+- python manage.py migrate
+- python manage.py runserver
